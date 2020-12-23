@@ -1,0 +1,13 @@
+Server结构的配置选项
+
+type Server struct {
+	Addr              string  // TCP address to listen on, ":http" if empty
+	Handler           Handler // handler to invoke, http.DefaultServeMux if nil
+	ReadTimeout       time.Duration
+	WriteTimeout      time.Duration
+	MaxHeaderBytes    int
+	TLSConfig         *tls.Config
+	TLSNextProto      map[string]func(*Server, *tls.Conn, Handler)
+	ConnState         func(net.Conn, ConnState)
+	ErrorLog          *log.Logger
+}
