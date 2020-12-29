@@ -14,20 +14,18 @@ func main() {
 
 // 函数foo接受一个100万个整型值的数组
 func foo(array [1e6]int) {
-	array2 := array
-
 	// 若将条件上限设置为 1e6，则遍历所有地址
 	for i := 0; i < 6; i++ {
-		fmt.Printf("The address of the %d subscript: %v\n", i, &array2[i])
+		fmt.Printf("The address of subscript %d is: %v\n", i, &array[i])
 	}
 }
 
 /*
 >>> Execution Result:
-The address of the 0 subscript: 0xc000080000
-The address of the 1 subscript: 0xc000080008
-The address of the 2 subscript: 0xc000080010
-The address of the 3 subscript: 0xc000080018
-The address of the 4 subscript: 0xc000080020
-The address of the 5 subscript: 0xc000080028
+The address of subscript 0 is: 0xc000080000
+The address of subscript 1 is: 0xc000080008
+The address of subscript 2 is: 0xc000080010
+The address of subscript 3 is: 0xc000080018
+The address of subscript 4 is: 0xc000080020
+The address of subscript 5 is: 0xc000080028
 */
