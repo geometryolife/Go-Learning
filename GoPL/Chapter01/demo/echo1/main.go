@@ -10,9 +10,9 @@ func main() {
 	var s, sep string
 	for i := 1; i < len(os.Args); i++ {
 		s += sep + os.Args[i]
-		sep = "*"
+		sep = " "
 	}
 	fmt.Println(s)
-	// len(os.Args) = 1，所以循环体并未执行
+	// 如果不输入参数，则len(os.Args) = 1，此时循环体并未执行
 	fmt.Println(len(os.Args))
 }
