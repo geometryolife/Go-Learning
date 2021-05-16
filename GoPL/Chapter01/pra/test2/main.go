@@ -1,4 +1,4 @@
-// 练习2: 修改echo程序，输出参数的索引值，每行一个。
+// 练习2: 修改echo程序，输出参数的索引和值，每行一个。
 package main
 
 import (
@@ -7,13 +7,11 @@ import (
 )
 
 func main() {
-	// var temp int
 	s, sep := "", ""
-	for temp, arg := range os.Args[0:] {
+	for index, arg := range os.Args[0:] {
 		s += sep + arg
 		sep = " "
-		fmt.Println(temp)
-		fmt.Println(arg)
+		fmt.Println(index, arg)
 	}
 	fmt.Println(s)
 }
