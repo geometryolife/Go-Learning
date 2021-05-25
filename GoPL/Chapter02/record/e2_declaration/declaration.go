@@ -7,7 +7,9 @@
 // 5. func 函数名(参数列表) (可选的返回值列表) 函数体
 // 6. 函数的执行从第一个语句开始，直到遇到一个返回语句，或者执行到无返回
 // 结果的函数末尾，程序的控制和返回值(如果有)都返回给调用者。
-// >>> File Link:
-// ../../demo/boiling/main.go
-// ../../demo/ftoc/main.go
+/*
+>>> File Link:
+../../demo/boiling/main.go
+../../demo/ftoc/main.go
+*/
 package main

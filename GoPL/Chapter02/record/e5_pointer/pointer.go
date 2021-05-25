@@ -75,3 +75,18 @@ func incr(p *int) int {
 	*p++ // 递增p所指向的值；p自身保持不变
 	return *p
 }
+
+/*
+>>> Execution Result:
+1
+2
+
+false true <nil> 0xc00000e038
+true false false
+
+0xc0000140d0 1
+false
+0xc000014108 0xc000014110
+
+3
+*/
