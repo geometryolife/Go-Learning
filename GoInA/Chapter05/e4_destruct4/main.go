@@ -11,14 +11,14 @@ type user struct {
 	privileged bool
 }
 
-// admin需要一个user类型作为管理者，并附加权限
+// admin 需要一个 user 类型作为管理者，并附加权限
 type admin struct {
 	person user
 	level  string
 }
 
 func main() {
-	// 声明admin类型的变量
+	// 声明 admin 类型的变量
 	fred := admin{
 		person: user{
 			name:       "Lisa",

@@ -12,7 +12,7 @@ type user struct {
 }
 
 func main() {
-	// 声明user类型的变量
+	// 声明 user 类型的变量
 	// 每个值也可以分别占一行，不过习惯上这种形式会写在一行里，结尾不需要逗号。
 	lisa1 := user{"Lisa", "lisa@email.com", 123, true}
 	// 如果不写在一行，结尾需要逗号

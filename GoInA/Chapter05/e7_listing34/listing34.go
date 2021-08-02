@@ -1,5 +1,5 @@
-// 这个示例程序展示如何使用io.Reader和io.Writer接口
-// 写一个简单版本的curl程序
+// 这个示例程序展示如何使用 io.Reader 和 io.Writer 接口
+// 写一个简单版本的 curl 程序
 package main
 
 import (

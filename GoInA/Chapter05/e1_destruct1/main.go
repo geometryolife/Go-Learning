@@ -13,7 +13,7 @@ type user struct {
 
 func main() {
 	// 使用结构类型声明变量，并初始化为其零值
-	// 声明user类型的变量
+	// 声明 user 类型的变量
 	var bill user
 
 	fmt.Println(bill)

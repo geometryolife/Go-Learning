@@ -1,4 +1,4 @@
-// 基于int64声明一个新类型
+// 基于 int64 声明一个新类型
 package main
 
 import "fmt"
