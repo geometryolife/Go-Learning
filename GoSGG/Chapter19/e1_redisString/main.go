@@ -1,4 +1,4 @@
-// Set/Get 接口
+// Set/Get 操作
 package main
 
 import (
@@ -37,7 +37,45 @@ func main() {
 	// 因为返回的 r 是 interface{}，而 name 对应的值是 string，因此需要转换
 	// nameString := r.(string)
 
-	fmt.Printf("Read successfully!\n%s\n", r)
+	fmt.Printf("Read successfully!\n%s\n\n", r)
+
+	multiSet()
+}
+
+// 批量 Set/Get 操作
+func multiSet() {
+	// Connection
+	conn, err := redis.Dial("tcp", "127.0.0.1:6379")
+	if err != nil {
+		fmt.Println("redis.Dial err =", err)
+		return
+	}
+	defer conn.Close()
+
+	// Write
+	_, err = conn.Do("MSET", "name", "Joe Chen", "address", "ShenZhen")
+	if err != nil {
+		fmt.Println("MSET err =", err)
+		return
+	}
+
+	// Expire
+	_, err = conn.Do("EXPIRE", "address", 10)
+	if err != nil {
+		fmt.Println("EXPIRE err =", err)
+		return
+	}
+	fmt.Println("Set automatic expiration!")
+
+	// Read
+	// 必须使用 redis.Strings 函数将数组命令回复转换为字符串切片，否则无法遍历
+	r, err := redis.Strings(conn.Do("MGET", "name", "address"))
+	if err != nil {
+		fmt.Println("MGET err =", err)
+	}
+	for i, v := range r {
+		fmt.Printf("%T\tr[%d] = %v\n", v, i, v)
+	}
 }
 
 /*
@@ -48,4 +86,8 @@ connection succeeded! &{{0 0} 0 <nil> 0xc000010038 0 0xc000056240 0 0xc000054
 Successfully written!
 Read successfully!
 贝尔·格里尔斯
+
+Set automatic expiration!
+string  r[0] = Joe Chen
+string  r[1] = ShenZhen
 */
