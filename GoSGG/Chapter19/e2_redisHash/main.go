@@ -107,6 +107,7 @@ func multiHash() {
 		"country", "UK")
 	if err != nil {
 		fmt.Println("HMSET err =", err)
+		return
 	}
 	fmt.Println("Write successfully!")
 
@@ -114,6 +115,7 @@ func multiHash() {
 	r1, err := redis.Strings(conn.Do("HMGET", "user3", "name", "age"))
 	if err != nil {
 		fmt.Println("HMGET err =", err)
+		return
 	}
 	fmt.Printf("Read successfully!\n%T\t%v\n", r1, r1)
 
@@ -126,10 +128,32 @@ func multiHash() {
 	r2, err := redis.Values(conn.Do("HMGET", "user3", "name", "age"))
 	if err != nil {
 		fmt.Println("HMGET err =", err)
+		return
 	}
 	fmt.Printf("Read successfully!\n%T\t%v\n", r2, r2)
+
 	for i, v := range r2 {
 		fmt.Printf("%T\tr2[%d] = %s\n", v, i, v)
+	}
+
+	fmt.Println()
+
+	// Read All
+	r3, err := redis.Strings(conn.Do("HGETALL", "user3"))
+	if err != nil {
+		fmt.Println("HGETALL err =", err)
+		return
+	} else {
+		fmt.Printf("Read successfully!\n%T\t%v\n", r3, r3)
+	}
+
+	for i, v := range r3 {
+		fmt.Printf("%T\tr3[%d] = %s\n", v, i, v)
+	}
+	for i := 0; i < len(r3); i++ {
+		if i%2 != 0 {
+			fmt.Printf("%s: %s\n", r3[i-1], r3[i])
+		}
 	}
 }
 
@@ -158,4 +182,16 @@ Read successfully!
 []interface {}  [[232 180 157 229 176 148 194 183 230 160 188 233 135 140 229 176 148 230 150 175] [52 55]]
 []uint8 r2[0] = 贝尔·格里尔斯
 []uint8 r2[1] = 47
+
+Read successfully!
+[]string        [name 贝尔·格里尔斯 age 47 country UK]
+string  r3[0] = name
+string  r3[1] = 贝尔·格里尔斯
+string  r3[2] = age
+string  r3[3] = 47
+string  r3[4] = country
+string  r3[5] = UK
+name: 贝尔·格里尔斯
+age: 47
+country: UK
 */
