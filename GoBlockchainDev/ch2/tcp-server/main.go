@@ -16,7 +16,8 @@ func handle_conn(conn net.Conn) {
 			fmt.Println("Failed to Read", err)
 			break
 		}
-		fmt.Println(n, string(buf))
+		// fmt.Println(n, string(buf))
+		fmt.Printf("size: %d, msg: %s", n, string(buf))
 		n, err = conn.Write(buf[:n])
 		if err != nil {
 			fmt.Println("Failed to Write", err)
